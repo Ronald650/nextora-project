@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextora - Landing Page Ronal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <header class="header reveal">
+            <div class="container flex-header">
+                <div class="logo">Nextora</div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#features">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="auth-box">
+                <a href="#" class="btn-login">Log in</a>
+                <a href="#" class="btn-signup">Sign up</a>
+            </div>
+        </header>
+
+    <section id="home" class="hero">
+        <div class="hero-text reveal-left">
+            <h1 id="judul-utama"></h1> 
+            <p class="reveal-up">Kelola kebun sayur dan buah Anda dengan teknologi modern Nextora.</p>
+        
+            <div class="hero-buttons">
+                <button class="btn-primary">Get Started</button>
+                <button class="btn-secondary">Explore Service</button>
+            </div>
+        </div>
+
+        <div class="hero-image-wrapper reveal-right">
+            <img src="https://images.unsplash.com/photo-1593642532400-2682810df593?q=80&w=600" alt="Hero" class="hero-image">
+            <div class="floating-badge reveal-pop">
+                <div class="badge-imgs">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="U1">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="U2">
+                </div>
+                    <span>+ Active 2k Members</span>
+            </div>
+        </div> 
+    </section>
+    <section id="about" class="about-section">
+        <div class="container flex-about">
+            <div class="about-text">
+                <h2>Tentang Nextora</h2>
+                <p>Nextora bukan sekadar platform, tapi asisten digital untuk kebun sayur dan buah Anda. Kami menghadirkan monitoring real-time yang bisa diakses langsung dari Master Console Anda.</p>
+                <button class="btn-primary">Pelajari Lebih Lanjut</button>
+            </div>
+
+            <div class="about-visual">
+                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400" alt="Teknologi Pertanian" style="width: 100%; border-radius: 15px;">
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="services-section">
+        <div class="container" style="text-align: center;">
+            <h2>Layanan Unggulan</h2>
+            <p>Gunakan Master Console untuk mengatur modul kebun Anda secara interaktif.</p>
+        
+            <div class="drag-box">
+                <span>📦 Kotak Geser</span>
+            </div>
+            <div class="console-status">
+                <span id="status-text">System Active</span>
+                <span id="nextora-weather">--°C</span> 
+            </div>
+        </div>
+</section>
+
+<footer id="contact" class="main-footer">
+    <div class="footer-container">
+        <div class="footer-info">
+            <h3 class="footer-logo">Nextora<span>.</span></h3>
+            <p>
+                Inovasi teknologi pertanian cerdas. Kami menggabungkan sistem monitoring modern dengan kemudahan pengelolaan dalam satu platform Master Console.
+            </p>
+            <div class="footer-socials">
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <h4>Navigasi</h4>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#features">Fitur Utama</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Hubungi Pengembang</h4>
+            <p><i class="fas fa-user"></i> <strong>Ronald Manullang</strong></p>
+            <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatra Utara</p>
+            <p>
+                <a href="https://wa.me/6282167974320?text=Halo%20Ronald,%20saya%20melihat%20proyek%20Nextora%20Anda%20dan%20tertarik%20untuk%20berdiskusi." 
+                   target="_blank" 
+                   style="color: #25D366; text-decoration: none; font-weight: bold;">
+                   <i class="fab fa-whatsapp"></i> +62 821-6797-4320
+                </a>
+            </p>
+            <p><i class="fas fa-envelope"></i> ronaldmarolop@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 <strong>Nextora Project</strong>. Designed by Ronald Manullang | Frontend Developer & Electronics Specialist.</p>
+    </div>
+</footer>
+    <div id="remote-control">
+        <h3 id="remote-header" style="text-align: center; border-bottom: 1px solid #444; padding-bottom: 5px; cursor: move; background: #333; margin: -15px -15px 10px -15px; border-radius: 12px 12px 0 0; padding: 10px;">📟 MASTER CONSOLE v1.0</h3>
+
+        <div class="remote-sec">
+            <strong>[1] NAVIGASI FOTO</strong>
+            <label>Geser Kiri/Kanan:</label> <span id="v-foto-x">0px</span>
+            <input type="range" id="r-foto-x" min="-300" max="500" value="0">
+    
+            <label>Geser Atas/Bawah:</label> <span id="v-foto-y">0px</span>
+            <input type="range" id="r-foto-y" min="-300" max="300" value="0">
+        </div>
+
+        <div class="remote-sec">
+            <strong>[2] DIMENSI & TEKS</strong>
+            <label>Besar Judul (px):</label> <span id="v-font" class="val-display">48px</span>
+            <input type="range" id="r-font" min="20" max="80" value="48">
+    
+            <label>Lebar Foto (px):</label> <span id="v-lebar" class="val-display">450px</span>
+            <input type="range" id="r-lebar" min="200" max="600" value="450">
+
+            <label>Ukuran Badge (x):</label> <span id="v-badge-size" class="val-display">1.0</span>
+            <input type="range" id="r-badge-size" min="0.5" max="2.0" step="0.1" value="1.0">
+        </div>
+
+        <div class="remote-sec">
+            <strong>[3] RADIUS (BENDING)</strong>
+            <label>Lengkung Foto (px):</label> <span id="v-rad" class="val-display">30px</span>
+            <input type="range" id="r-rad" min="0" max="100" value="30">
+        </div>
+
+        <div class="remote-sec">
+            <strong>[4] WARNA (VOLTAGE)</strong>
+    
+            <label>Warna Tema:</label>
+            <input type="color" id="r-col-main" value="#2c5850">
+    
+            <label>Warna Tombol:</label>
+            <input type="color" id="r-col-btn" value="#a78b03">
+
+        <div style="display: flex; gap: 5px; margin-top: 12px; border-top: 1px dotted #555; padding-top: 10px;">
+            <button type="button" onclick="setPreset('emerald')" style="flex:1; font-size:9px; background:#2c5850; color:white; border:none; padding:8px 0; border-radius:4px; cursor:pointer;">EMERALD</button>
+            <button type="button" onclick="setPreset('ocean')" style="flex:1; font-size:9px; background:#005f73; color:white; border:none; padding:8px 0; border-radius:4px; cursor:pointer;">OCEAN</button>
+            <button type="button" onclick="setPreset('sunset')" style="flex:1; font-size:9px; background:#9b2226; color:white; border:none; padding:8px 0; border-radius:4px; cursor:pointer;">SUNSET</button>
+        </div>
+    </div>
+        <div class="remote-sec">
+            <strong>[5] NAVIGASI BADGE</strong> 
+            <label>Geser Kiri/Kanan:</label> <span id="v-badge-x">0px</span>
+            <input type="range" id="r-badge-x" min="-100" max="500" value="0">
+    
+            <label>Geser Atas/Bawah:</label> <span id="v-badge-y">0px</span>
+            <input type="range" id="r-badge-y" min="-500" max="500" value="0">
+        </div>
+        <div class="remote-sec">
+            <strong>[6] EFEK VISUAL (LAMPU & KACA)</strong>
+    
+            <label>Transparansi Foto (Opacity):</label> <span id="v-opac">1</span>
+            <input type="range" id="r-opac" min="0.1" max="1" step="0.1" value="1">
+    
+            <label>Lampu Neon (Glow Blur):</label> <span id="v-glow">0px</span>
+            <input type="range" id="r-glow" min="0" max="50" value="0">
+            <label>Warna Lampu Neon (RGB):</label>
+            <input type="color" id="r-glow-color" value="#ff7f50" style="width: 100%; height: 40px; cursor: pointer;">
+        </div>
+        <div class="remote-sec">
+            <strong>MODE TEMA</strong>
+            <button id="btn-dark-mode" style="width:100%; cursor:pointer;">🌙 Ganti ke Dark Mode</button>
+        </div>
+        <div class="remote-sec">
+            <strong>[7] GANTI FOTO HERO (DUAL SYSTEM)</strong>
+    
+            <label>Opsi A: Dari Internet (URL)</label>
+            <input type="text" id="input-foto-url" placeholder="Paste link foto di sini..." style="width:100%; padding:5px; margin-bottom:10px;">
+
+            <label>Opsi B: Dari Komputer (Local)</label>
+            <input type="file" id="input-foto-file" accept="image/*" style="width:100%; padding:5px; background: #444; color: white;">
+    
+            <p style="font-size: 9px; color: #aaa; margin-top: 5px;">*Jika menggunakan file lokal, pastikan ukuran foto di bawah 1MB.</p>
+        </div>
+        <div class="remote-sec">
+            <strong>[8] EDIT KONTEN (TRANSMITTER)</strong>
+            <label>Ganti Judul Utama:</label>
+            <input type="text" id="input-judul" placeholder="Ketik judul baru..." style="width:100%; padding:5px; margin-bottom:10px;">
+    
+            <label>Ganti Paragraf:</label>
+            <textarea id="input-paragraf" placeholder="Ketik deskripsi..." style="width:100%; padding:5px; height:60px;"></textarea>
+        </div>
+        <div class="remote-sec" style="text-align: center; border-top: 1px solid #ddd; padding-top: 15px; display: flex; gap: 10px; justify-content: center;">
+            <button id="btn-export" style="background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; flex: 1;">
+            📥 EXPORT DESAIN
+            </button>
+            <button id="btn-import-trigger" style="background: #007bff; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; flex: 1;">
+            📤 IMPORT DESAIN
+            </button>
+            <input type="file" id="input-import" style="display: none;" accept=".json">
+        </div>
+        <div class="remote-sec" style="border-top: 1px solid #444; padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 10px; color: #888; margin-bottom: 5px;">
+                <span>MEMORY STORAGE</span>
+                <span id="mem-percent">0%</span>
+            </div>
+            <div style="width: 100%; height: 6px; background: #222; border-radius: 10px; overflow: hidden; border: 1px solid #444;">
+                <div id="mem-bar" style="width: 0%; height: 100%; background: #4caf50; transition: 0.5s ease;"></div>
+            </div>
+            <p id="mem-detail" style="font-size: 9px; color: #666; margin-top: 5px; text-align: center;">Kapasitas Terpakai: 0 Bytes</p>
+        </div>
+        <p style="text-align:center; font-size:9px; color:#666">Tekan 'H' untuk Sembunyikan</p>
+        <div class="remote-sec" style="text-align: center; border-top: 1px solid #ddd; padding-top: 15px;">
+            <button id="btn-reset-layout" class="btn-reset">
+            🔄 RESET SEMUA POSISI
+            </button>
+        </div>
+    </div>
+    <div id="save-status" class="status-indicator">
+    ● DATA SYNCED TO MEMORY
+</div>
+
+
+<div id="operator-clock" style="position: fixed; top: 20px; right: 20px; text-align: right; z-index: 999; font-family: 'Courier New', monospace; pointer-events: none;">
+    <div id="greeting-text" style="font-size: 12px; color: #888; letter-spacing: 1px; text-transform: uppercase;">MENGHUBUNGKAN...</div>
+    <div id="digital-time" style="font-size: 28px; color: var(--btn-color, #ff7f50); font-weight: bold; text-shadow: 0 0 10px rgba(0,0,0,0.5);">00:00:00</div>
+    <div id="current-date" style="font-size: 10px; color: #666; margin-top: 2px;">-- / -- / ----</div>
+    <hr style="border: 0; border-top: 1px dashed #444; margin: 10px 0;">
+    <div id="stopwatch-display" style="font-size: 20px; color: #00ff00; font-family: 'Courier New', monospace;">00:00.00</div>
+    <div style="margin-top: 5px; pointer-events: auto;">
+        <button onclick="startStopwatch()" style="background: #222; color: #0f0; border: 1px solid #0f0; cursor: pointer; font-size: 10px;">START</button>
+        <button onclick="stopStopwatch()" style="background: #222; color: #f00; border: 1px solid #f00; cursor: pointer; font-size: 10px;">STOP</button>
+        <button onclick="resetStopwatch()" style="background: #222; color: #fff; border: 1px solid #fff; cursor: pointer; font-size: 10px;">RESET</button>
+    </div>
+    <div class="weather-widget">
+        <h4>Cuaca Medan</h4>
+        <span id="weather-display">Memuat...</span> 
+    </div>
+</div>
+<div id="ticker-container">
+    <div id="ticker-wrapper">
+        <div id="stock-data-live">
+            <span style="color: #888;">📡 MENGHUBUNGKAN KE BURSA EFEK INDONESIA...</span>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

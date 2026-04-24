@@ -1,0 +1,938 @@
+:root {
+    /* [1] WARNA (VOLTAGE) */
+    --main-color: #2c5850;      /* Warna Tema/Auth Box */
+    --btn-color: #a78b03;       /* Warna Tombol & Teks Ketikan */
+    --glow-color: #ff7f50;      /* Warna Lampu Neon */
+
+    /* [2] TYPOGRAPHY */
+    --judul-size: 48px;
+
+    /* [3] FOTO HERO */
+    --foto-width: 450px;
+    --foto-radius: 30px;
+    --foto-opacity: 1;
+    --foto-glow-blur: 0px;
+    --foto-x: 0px;
+    --foto-y: 0px;
+
+    /* [4] FLOATING BADGE */
+    --badge-x: 0px;
+    --badge-y: 0px;
+    --badge-scale: 1.0;
+}
+/* --- CSS RESET --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #e5e5e5; padding: 40px; display: flex; justify-content: center; }
+body.dark-theme { background-color: #121212; color: white; }
+body.dark-theme .main-container { background-color: #1e1e1e; color: #eee; }
+body.dark-theme .logo, body.dark-theme nav a { color: #fff; }
+/* --- LAYER 1: KONTAINER UTAMA --- */
+.main-container {
+    background-color: #fdfaf5; 
+    width: 95%;           /* Gunakan 100% agar fleksibel */
+    max-width: 1100px;     /* Batas maksimal di monitor besar */
+    margin: 40px auto;     /* 40px atas-bawah, AUTO untuk kiri-kanan agar di tengah */
+    border-radius: 20px; 
+    overflow: hidden;      /* Potong elemen yang keluar jalur */
+    position: relative; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 600px;
+    min-width: 0;          /* TAMBAHKAN INI: Agar bisa mengecil di bawah 268px */
+    /* Tambahkan Padding agar isi di dalamnya tidak mepet ke dinding container */
+    padding: 0;
+}
+
+/* --- LAYER 2: HEADER & KOTAK HIJAU --- */
+header { display: flex; justify-content: space-between; height: 80px; position: relative; z-index: 100; }
+.nav-area { width: 75%; display: flex; align-items: center; padding: 0 65px; justify-content: space-between; }
+.logo { font-size: 1.5rem; font-weight: bold; color: #333; margin-left: 20px; }
+nav ul { list-style: none; display: flex; gap: 20px; font-size: 0.9rem; margin-left: 20px; }
+nav a { text-decoration: none; color: #555; }
+
+.auth-box { 
+    background-color: var(--main-color) !important; /* GANTI DI SINI (Warna Utama) */
+    width: 25%; display: flex; align-items: center; justify-content: center; gap: 15px;
+    position: absolute; right: 0; top: 0; height: 100%;
+    border-bottom-left-radius: 15px;
+}
+.btn-login { color: white; text-decoration: none; font-size: 0.8rem; }
+.btn-signup { 
+    background: white; 
+    color: #2c5850; /* GANTI DI SINI (Warna Utama) */
+    padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.8rem; 
+}
+
+/* --- LAYER 3: AREA HERO (DENGAN CSS GRID) --- */
+/* --- LAYER 3: AREA HERO (VERSI BERSIH & RESPONSIVE) --- */
+.hero { 
+    display: grid; 
+    /* Gunakan 1fr agar pembagian adil, minmax(0,...) agar tidak meluber keluar layar */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center; 
+    padding: 80px 65px; 
+    gap: 40px; 
+    background: linear-gradient(to right, #fdfaf5 75%, #121301 25%);
+    position: relative;
+    overflow: hidden; /* Tambahkan ini agar elemen reveal tidak bikin scrollbar horizontal */
+}
+
+.hero-text { 
+    z-index: 50;
+    justify-self: start; 
+    min-width: 0; /* Penting agar teks bisa mengecil */
+}
+
+#judul-utama {
+    display: block;
+    width: 100%;
+    overflow: visible;
+    min-height: 1.2em;
+    font-size: var(--judul-size);
+    /* KUNCI: Gunakan line-height tetap (misal 1 atau 1.1) 
+       agar saat huruf membesar, dia tidak mendorong elemen bawah terlalu jauh */
+    line-height: 1.1;
+    white-space: nowrap; /* KUNCI: Melarang teks turun atau menderet ke samping */
+    margin-left: 20px; /* Kita kasih 100px dulu agar tombol melompat ke kanan setelah itu stel sesuai selera */
+    /* Tambahkan margin-bottom tetap agar jarak ke paragraf konsisten */
+    margin-bottom: 10px;
+}
+
+.hero-text p { 
+    color: #666; 
+    margin-bottom: 30px; 
+    margin-left: 20px; /* Kita kasih 100px dulu agar tombol melompat ke kanan setelah itu stel sesuai selera */
+    max-width: 400px; 
+    transition: all 0.6s ease-in-out;
+}
+
+/* Container tombol dibuat fleksibel */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap; 
+    width: 100%;
+    max-width: 450px;
+    /* --- KABEL PENGETESAN (UBAH DI SINI) --- */
+    margin-left: 20px; /* Kita kasih 100px dulu agar tombol melompat ke kanan setelah itu stel sesuai selera */
+}
+
+.hero-buttons button {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary { 
+    background: var(--btn-color) !important; 
+    color: white; 
+}
+
+.btn-secondary {
+    background-color: var(--btn-color) !important;
+    color: #333;
+}
+
+.hero-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- LAYER 4: FOTO (POSISI TENGAH KOLOM) --- */
+/* --- FOTO (DIBUAT BEBAS) --- */
+.hero-image-wrapper { 
+    width: 100%; 
+    max-width: var(--foto-width); 
+    /* PAKSA HILANGKAN SEMUA BATAS */
+    min-width: 0 !important; 
+    justify-self: center;
+}
+
+.hero-image {
+    width: 100%; 
+    height: auto;
+    display: block;
+    /* Tambahkan ini untuk memastikan gambar tidak menahan lebar kontainer */
+    min-width: 0; 
+    /* --- TAMBAHKAN TIGA BARIS INI --- */
+    border-radius: var(--foto-radius);   /* Ini Border Radius */
+    opacity: var(--foto-opacity);         /* Ini Opacity */
+    transform: translateX(var(--foto-x)) translateY(var(--foto-y)) !important;
+    /* ... kodingan yang sudah ada ... */
+    user-select: none;
+    -webkit-user-drag: none; /* Ini pengunci agar tanda dilarang tidak muncul */
+    pointer-events: none;    /* Agar klik mouse tembus ke background, tidak nyangkut di foto */
+    /* Tambahan agar Glow juga sinkron */
+    box-shadow: 0 0 var(--foto-glow-blur) var(--glow-color);
+    
+    /* Transisi halus agar saat digeser tidak kaku */
+    /* Pastikan transisinya kecil saja agar real-time tapi tetap halus */
+    transition: transform 0.1s ease-out, border-radius 0.3s ease;
+    will-change: transform; /* Tambahkan ini agar browser fokus pada pergerakan */
+}
+
+/* --- PERBAIKAN TOMBOL FINAL (ANTI-MENTOK) --- */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 450px;
+    /* Agar tombol otomatis susun ke bawah sebelum layarnya sesak */
+    flex-wrap: wrap; 
+}
+
+.hero-buttons button, 
+.hero-buttons .btn-secondary { 
+    flex: 1;
+    padding: 14px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+
+    /* DUA BARIS INI ADALAH KUNCI TEMBUS 166px */
+    white-space: normal;    /* Teks boleh pindah baris jika sempit */
+    min-width: 0;           /* Membebaskan foto dari beban tombol */
+}
+
+/* Warna khusus untuk tombol kedua (Explore) jika ingin beda sedikit */
+.btn-secondary {
+    background-color: var(--btn-color) !important; /* Warna dasar transparan */
+    color: #333;
+}
+
+/* Efek Hover untuk kedua tombol */
+.hero-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- LAYER 5: BADGE (FLOATING) --- */
+.floating-badge {
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    background: var(--main-color) !important; 
+    color: white; 
+    padding: 10px 15px; 
+    border-radius: 10px;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-size: 0.8rem; 
+    z-index: 200; /* Pastikan di atas foto */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);  
+    
+    /* Tambahkan ini agar saat di-scale atau digeser terasa smooth */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s ease;
+    
+    /* Penting agar tidak menghalangi klik pada elemen di bawahnya */
+    pointer-events: auto; 
+    cursor: grab;
+}
+
+.floating-badge:active {
+    cursor: grabbing;
+    transform: scale(0.95); /* Efek sedikit mengecil saat diklik/geser */
+}
+
+.badge-imgs img { width: 25px; height: 25px; border-radius: 50%; border: 2px solid white; margin-right: -10px; }
+/* --- REMOTE PANEL (TIDAK USAH DIUBAH) --- */
+/* --- REMOTE PANEL (MASTER CONSOLE) --- */
+#remote-control {
+    position: fixed; 
+    /* Hapus bottom: 10px; agar tidak dikunci di bawah terus */
+    top: 50px; /* Posisi awal muncul */
+    left: 20px; 
+    width: 280px;
+    z-index: 9999; /* Pastikan di depan semua elemen */
+    background: #1a1a1a; 
+    color: #00ff00;
+    padding: 15px; 
+    border-radius: 12px; 
+    font-family: 'Courier New', monospace; 
+    font-size: 11px; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    max-height: 85vh; 
+    user-select: none; /* Mencegah teks terpilih saat di-drag */
+    will-change: top, left; /* Optimasi hardware acceleration browser */
+    overflow-y: auto; 
+    border: 1px solid #333;
+    transition: opacity 0.3s ease; /* Biar halus saat muncul/sembunyi */
+}
+.remote-sec { margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+.remote-sec strong { display: block; margin-bottom: 8px; color: #aaa; }
+.val-display { color: #fff; float: right; }
+input[type="range"] { width: 100%; cursor: pointer; margin: 5px 0; }
+input[type="color"] { width: 100%; height: 25px; cursor: pointer; border: none; background: none; }
+
+/* Di bagian atas CSS (Desktop) */
+.hero-image-wrapper { 
+    width: 100%;             /* Fleksibel */
+    max-width: 450px;        /* Diatur oleh slider r-lebar */
+    position: relative; 
+}
+
+/* --- 6. RESPONSIVE MOBILE (SAKLAR OTOMATIS HP) --- */
+@media (max-width: 768px) {
+    
+    body {
+        padding: 15px; /* Memberi jarak antara bingkai HP dengan container */
+    }
+
+    /* Header: Pastikan header tidak bertumpuk */
+    header {
+        flex-direction: column;
+        height: auto; /* Biar tinggi header mengikuti isi menu */
+    }
+
+    .nav-area {
+        width: 100%;
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Kotak Hijau: Sekarang dia akan pindah ke bawah menu, tidak menimpa lagi */
+    .auth-box {
+        position: relative; /* Lepaskan dari posisi melayang */
+        width: 100%;
+        height: auto;
+        padding: 20px 0;
+        border-radius: 0;
+        transition: background-color 0.8s ease, transform 0.6s ease;
+    }
+    .main-container {
+        width: 100%; /* Di HP biarkan penuh, tapi body sudah punya padding */
+        margin: 10px 0;
+    }
+
+    .hero {
+        grid-template-columns: 1fr; 
+        /* Kita kecilkan padding kiri-kanan jadi 15px agar ada sisa ruang untuk foto */
+        padding: 40px 25px; /* Jarak teks ke pinggir layar HP */
+        text-align: center;
+        background: #fdfaf5; 
+        gap: 15px; /* Perkecil jarak antara teks dan foto */
+        overflow: hidden; /* Mencegah elemen "balapan" keluar layar */
+    }
+
+    .hero-text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+   .hero-text h1 {
+    /* ... kodingan bapak sebelumnya ... */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word; /* Memaksa kata panjang untuk pindah baris */
+}
+
+.hero-text p {
+    /* ... kodingan bapak sebelumnya ... */
+    margin-left: 5px;
+    min-width: 0; /* Melepaskan kunci lebar minimum teks */
+}
+
+    /* Foto Utama: Mengikuti lebar layar HP secara proporsional */
+.hero-image-wrapper {
+        width: 100% !important; 
+        max-width: 250px; /* Batasi agar tidak terlalu besar */
+        margin: 0 auto;
+        min-width: 0; /* Pastikan tidak ada kunci lebar minimal */
+    }
+
+    @media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column; /* Tombol jadi atas-bawah */
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .hero-buttons button {
+        width: 100%; /* Tombol memenuhi lebar layar HP */
+        padding: 12px 0;
+    }
+}
+
+.hero-image {
+    width: 100%;             /* Pastikan foto mengisi wrapper */
+    height: auto;            /* Menjaga foto tidak gepeng */
+    display: block;
+}
+
+
+    /* Footer Logo: Tetap rapi berderet */
+    .flex-logos {
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+/* --- 7. ANIMASI VARIASI (SLIDE & FADE) --- */
+
+/* Jalur Kiri (Untuk Teks) */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px); /* Geser ke kiri 50px */
+    transition: all 1s ease-out;
+}
+
+/* Jalur Kanan (Untuk Foto) */
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px); /* Geser ke kanan 50px */
+    transition: all 1s ease-out;
+}
+
+/* State Aktif (Semua kembali ke tengah) */
+.reveal-left.active, 
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+.drag-box {
+    width: 150px;
+    height: 100px;
+    background: #ff7f50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: move; /* Kursor berubah jadi simbol geser */
+    position: absolute; /* WAJIB: Biar bisa melayang di atas kotak lain */
+    top: 100px;  /* Kita kasih jarak dari atas */
+    left: 100px; /* Kita kasih jarak dari kiri */
+    z-index: 9999; /* Biar paling depan */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    user-select: none; /* Agar teks di dalamnya tidak ikut terseleksi pas digeser */
+    /* transition: left 0.3s ease, top 0.3s ease; <--- HAPUS ATAU MATIKAN BARIS INI */
+}
+#features {
+    position: relative;
+    min-height: 500px; /* Memberi ruang yang cukup untuk bermain drag-drop */
+    overflow: hidden;  /* Agar kotak tidak keluar jalur section */
+}
+.btn-reset {
+    background: #e74c3c; /* Warna Merah Peringatan */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-reset:hover {
+    background: #c0392b;
+    transform: scale(1.05); /* Sedikit membesar saat disentuh */
+}
+/* 1. Definisi Gerakan (Keyframes) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* 2. Class untuk Memicu Animasi */
+/* --- PERBAIKAN ANIMASI (SOLDER ULANG) --- */
+
+/* Kondisi Awal: Tersembunyi */
+.reveal-up, .reveal-right, .reveal-pop { 
+    opacity: 0; 
+}
+
+/* Animasi untuk Teks (Muncul dari Bawah) */
+.reveal-up.active { 
+    animation: fadeInUp 1s ease-out forwards; 
+}
+
+/* Animasi untuk Foto (Muncul dari Kanan) */
+.reveal-right.active { 
+    animation: fadeInRight 1s ease-out forwards; 
+}
+
+/* Animasi untuk Badge (Pop-in Slow Motion) */
+/* Saya gabungkan durasi 1.2s dengan cubic-bezier yang benar */
+.reveal-pop.active { 
+    animation: popIn 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
+
+.reveal-up {
+    /* Setelan Dasar untuk Laptop */
+    display: block;
+    text-align: left; /* Default rata kiri */
+    max-width: 80%;   /* Supaya teks tidak 'mentok' ke pinggir */
+    margin-bottom: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+/* --- SENSOR LAYAR HP/TABLET --- */
+@media (max-width: 768px) {
+    .reveal-up {
+        /* Pindah ke Tengah */
+        text-align: center;
+        
+        /* Pastikan elemennya sendiri ada di tengah container */
+        margin-left: auto;
+        margin-right: auto;
+        
+        /* Opsional: Lebarkan sedikit untuk layar HP agar pas */
+        max-width: 100%;
+        
+        /* Atur jarak antar baris agar lebih enak dibaca di layar sempit */
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+}
+
+/* --- EFEK KETIKAN KHUSUS PAK RONALD --- */
+/* --- REVISI FINAL EFEK KETIKAN --- */
+/* --- EFEK KETIKAN ISI CAT (FILLING EFFECT) --- */
+/* --- WADAH UTAMA --- */
+/* 1. Wadah harus relatif agar jadi patokan anak-anaknya */
+.typing-container {
+    position: relative;
+    display: inline-block; /* Pakai inline-block agar tidak liar */
+    vertical-align: top;
+    line-height: 1.2;
+}
+
+.typing-skeleton {
+    color: transparent; /* Teks asli dibuat tak terlihat */
+    
+    /* Efek Garis Luar (Outline) yang tegas namun elegan */
+    -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.15); 
+    
+    /* Tambahkan sedikit efek bayangan tipis agar kerangka terlihat 3D */
+    text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.5);
+    
+    opacity: 32; /* Transparansi agar tidak mendominasi teks utama */
+    user-select: none; /* Biar tidak bisa diblok/copy (karena ini cuma rangka) */
+    letter-spacing: 1px; /* Memberi ruang antar huruf agar tidak dempet */
+    display: block;        /* Mengisi ruang wadah */
+    position: relative;    /* Tetap di jalur normal */
+    visibility: visible;   /* Tetap terlihat sebagai pola */
+}
+.typing-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0; 
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+
+    /* --- SINKRONISASI PUSAT --- */
+    color: var(--btn-color); /* Warna teks utama */
+    -webkit-text-stroke: 1.5px var(--btn-color); /* Garis luar huruf agar tebal */
+    
+    /* --- KURSOR LED --- */
+    border-right: 4px solid var(--btn-color); /* Kursor mengikuti warna tombol */
+    filter: drop-shadow(0 0 8px var(--btn-color)); /* Efek cahaya kursor */
+
+    /* --- ANIMASI --- */
+    animation: 
+        typing-loop 8s steps(16, end) infinite, 
+        blink-cursor 0.8s step-end infinite;
+}
+
+@keyframes typing-action {
+    from { width: 0; }
+    /* Kita gunakan 'calc' agar saat 100%, kursornya tetap pas di ujung teks rangka */
+    to { width: calc(100% + 1ch); } 
+}
+
+@keyframes typing-loop {
+    /* 0% - 10%: Start dari nol mutlak */
+    0%, 10% { 
+        width: 0; 
+    }           
+    
+    /* 60% - 85%: Lebar mencapai 16 karakter (13 teks + 3 kosong) */
+    /* Kuncinya: Teks 'Mari Berkebun' hanya sampai 13ch, sisanya adalah area kosong */
+    60%, 85% { 
+        width: 16ch; 
+    } 
+
+    /* 90% - 100%: Reset */
+    90%, 100% { 
+        width: 0; 
+    }
+}
+
+/* Animasi kursor hilang-tampil */
+@keyframes blink-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: currentColor; }
+}
+
+#judul-utama, .typing-skeleton, .typing-text {
+    /* Gunakan font khusus koding agar lebarnya konsisten */
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    letter-spacing: 0px; /* Pastikan tidak ada jarak tambahan antar huruf */
+    font-size: var(--judul-size);
+    
+}
+
+/* --- FOOTER MAIN STYLES --- */
+.main-footer {
+    background-color: #121212; /* Gelap elegan */
+    color: #ffffff;
+    padding: 70px 0 30px;
+    border-top: 3px solid #ff7f50; /* Garis senada kursor LED */
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 0 20px;
+}
+
+/* Kolom Info (Dominan) */
+.footer-info {
+    flex: 2.5;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.footer-logo span {
+    color: #ff7f50;
+}
+
+.footer-info p {
+    color: #b0b0b0;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+/* Sosial Media Icons */
+.footer-socials a {
+    color: #ffffff;
+    font-size: 20px;
+    margin-right: 15px;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.footer-socials a:hover {
+    color: #ff7f50;
+    opacity: 1;
+    transform: translateY(-3px);
+    display: inline-block;
+}
+
+/* Kolom Navigasi & Kontak */
+.footer-links, .footer-contact {
+    flex: 1;
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-links h4::after, .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #ff7f50;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 15px;
+}
+
+.footer-links ul li a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #ff7f50;
+    padding-left: 8px;
+}
+
+.footer-contact p {
+    color: #b0b0b0;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-contact i {
+    color: #ff7f50;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #222;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* --- RESPONSIVE SETTINGS --- */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .footer-links h4::after, .footer-contact h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-info p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+/* Memberikan ruang agar tiap section punya area yang luas */
+section {
+    padding: 100px 0; /* Memberi jarak 100px di atas dan bawah konten */
+    min-height: 80vh; /* Minimal tinggi section adalah 80% dari tinggi layar HP/Laptop */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Membuat konten otomatis di tengah secara vertikal */
+}
+
+/* Khusus untuk Hero, kita buat tinggi penuh satu layar */
+.hero {
+    min-height: 100vh;
+    padding: 0;
+}
+.flex-about {
+    display: flex;
+    align-items: center; /* Agar teks dan gambar rata tengah secara vertikal */
+    gap: 50px; /* Memberi jarak/spasi antara teks dan gambar */
+    padding: 0 65px; /* <--- UBAH DI SINI agar sejajar dengan Hero */
+    /* --- TEKNIK SETEL JARAK --- */
+    /* 1. Pastikan kotak merah tidak punya ruang kosong di dalam */
+    padding-left: 0 !important; 
+    padding-right: 0!important;
+    /* Tambahkan ini agar saat full screen, dia tidak balik ke tengah */
+    justify-content: flex-start; 
+    max-width: 1100px; /* Menjaga agar konten tidak meluber terlalu lebar di monitor besar */
+}
+
+.about-text, .about-visual {
+    flex: 1; /* Membagi ruang 50:50 secara adil */
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px!important;
+}
+#save-status {
+    height: 20px; /* Beri ruang tetap agar layout tidak loncat saat teks muncul */
+    margin-bottom: 10px;
+}
+/* Rakit tampilan lampu indikator di sini */
+.status-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #4caf50;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-family: 'Consolas', monospace;
+    font-weight: bold;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease-in-out;
+    border: 1px solid #4caf50;
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+    transform: translateY(-20px); /* Posisi standby di atas */
+}
+
+/* Tambahkan class bantuan untuk dipanggil JavaScript nanti */
+.status-indicator.active {
+    opacity: 1;
+    transform: translateY(10px);
+}
+
+#digital-time {
+    transition: color 0.5s ease;
+    /* Memberikan efek neon tipis */
+    filter: drop-shadow(0 0 5px var(--btn-color));
+}
+
+#operator-clock {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 10px 15px;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    border-right: 3px solid var(--btn-color);
+}
+#operator-clock::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
+/* Efek Flicker (Berkedip halus khas monitor CRT) */
+@keyframes crt-flicker {
+    0% { opacity: 0.97; }
+    50% { opacity: 1; }
+    100% { opacity: 0.98; }
+}
+
+/* Efek Scanline (Garis-garis tipis monitor jadul) */
+#operator-clock::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    z-index: 2;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+}
+
+#greeting-text {
+    animation: crt-flicker 0.15s infinite;
+    text-shadow: 2px 2px 5px rgba(0, 255, 0, 0.3); /* Glow hijau khas radar */
+    letter-spacing: 2px;
+}
+/* "Running Text" (atau istilah teknisnya Marquee) di bagian paling bawah layar */
+#ticker-container {
+    position: fixed; /* Ini kuncinya: Menempel permanen di layar. WAJIB: Supaya tidak ikut discroll */
+    bottom: 0; /* Paku tepat di lantai layar. Posisi tepat di lantai paling bawah */
+    left: 0;
+    width: 100%; /* Lebar penuh layar dari ujung ke ujung */
+    background: rgba(10, 10, 10, 0.95); /* Hitam pekat agar angka saham kontras */
+    border-top: 2px solid var(--btn-color, #00ff00); /* Garis pembatas atas agar elegan */
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    padding: 10px 0;
+    overflow: hidden; /* Sembunyikan teks yang keluar jalur */
+    z-index: 999999; /* Angka tinggi agar tidak tertutup elemen lain */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); /* Efek bayangan agar terlihat timbul */
+    white-space: nowrap;
+    pointer-events: auto; /* Supaya bisa di-hover/stop */
+}
+    /* Supaya konten website utama tidak tertutup running text, 
+   tambahkan sedikit ruang di bagian paling bawah body */
+body {
+    padding-bottom: 50px;
+}
+/* Ini kuncinya: Menempel permanen di layar */
+#ticker-wrapper {
+    display: inline-block;
+    padding-left: 100%;
+    animation: jalan-pelan 35s linear infinite; /* Durasi 30 detik agar santai */
+}
+
+.ticker-item {
+    display: inline-block;
+    padding: 0 40px;
+    color: #00ff00; /* Hijau neon agar kontras */
+}
+
+@keyframes jalan-pelan {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Berhenti saat kursor mendekat (Pause on Hover) */
+#ticker-container:hover #ticker-wrapper {
+    animation-play-state: paused;
+}
+
+/* Tips Tambahan: Efek "News Flash" */
+#ticker-container::before,
+#ticker-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#ticker-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(10,10,10,1), transparent);
+}
+
+#ticker-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(10,10,10,1), transparent);
+}
